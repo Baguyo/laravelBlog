@@ -1,0 +1,54 @@
+//initialize git local repository
+git init
+
+//View files that are in/out in staging are in git local repository
+git status
+
+//Add one single file in the staging are in git local repository
+git add (filename)
+
+//Add all files in the staging area
+git add .
+
+//Remove all files from the staging area
+git rm --cached -r .
+
+//Commit files that are in the staging area
+git commint -m 'label'
+
+//View files that are commited
+git log
+
+//Check the differrence between the current file and the file that stored in the git local repository
+git diff (filename)
+
+//Revert the file to its previous state
+git checkout (filename)
+
+
+//Add the local git repository(offline) to the remote repository (online)
+git remote add origin (remote repository link)
+
+//Push the local repository to remote repository
+git push -u origin master
+
+//Push the update local repository to remote repositery (existing connection between repository)
+git push origin master -u
+
+//Clone an existing project from the github
+git clone (link)
+
+
+//Make branch for editing file but, not save in master branch
+git branch (name)
+
+//check what are the branches
+git branch 
+
+//Swith branch to edit
+git checkout (name)
+
+//Merge the branch to MASTER branch (must be in master branch)
+git merge (branch name )
+//Open vim to include branch message
+:q1 = to cancel messaging

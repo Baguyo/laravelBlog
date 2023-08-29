@@ -1,0 +1,62 @@
+model::where('field', 'operation', 'condition')->get()
+model::has('relational table', 'operation', 'condition')->get()
+model::whereHas('relational table', function($query){ $query->where(); })->get()
+
+model::doesntHave('relational table')->get();
+model::whereDoesntHave('relational table', function($query){ $query->where(); })
+
+model::withCount('relational table')->get();
+model::withCount(['relational table', 'comments as new_comment' => function($query){ $query->where('created_at', ">=", '2019-02-28 18:18:36'); }])->get();
+
+//make factory
+php artisan make:factory 'Name' --model='model name'
+//run factory
+//run tinker first
+Model::factory()->count()->create(['data']);
+
+//call a state factory function
+Model::factory->'function name'->create();
+
+
+//REFRESH DATABASE MIGRATION
+php artisan migrate:refresh
+
+//WITH SEEDER
+php artisan migrate:refresh --seed
+
+//SEEDER
+Make Seeder class
+php artisan make:seeder name
+
+NOTE! before using seeder INDIVIDUALLY
+Must run composer dump-autoload
+
+
+//RUN SEEDER INDIVIDUALLY
+php artisan db:seed --class=name
+
+//RUN SEEDER ALL IN DATABASE SEEDER class
+php artisan db:seed
+
+//BEFORE SOFTDELETS CAN BE USED MUST ADD THE USE SOFTDELETS TO Model
+use softdeletes
+
+
+// CHAIN METHODS PLUCK() get the database record only the given arguements
+model::all()->pluck() 
+
+//SOFT DELETES QUERY FETCH ALL DATA ALONG WITH THE TRASHED
+model::withTrashed()->get()->pluck(id)
+model::onlyTrashed()->get()->pluck(id) = fetch only data with delete at value
+
+
+//GATE AUTHORIZATION
+$user = authenticated user
+$post = post to test
+GATE::define('update-post', function($user, $post){ 
+            return ( $user->id === $post->user_id );
+        });
+
+
+//POLICY A CLASS TO SIMPLY DEFINE A GATE
+php artisan make:policy 'name' --model='model'
